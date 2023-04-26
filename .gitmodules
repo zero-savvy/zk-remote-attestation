@@ -1,6 +1,3 @@
 [submodule "circom/circomlib"]
 	path = circom/circomlib
 	url = git@github.com:iden3/circomlib.git
-[submodule "circom/tornado-core"]
-	path = circom/tornado-core
-	url = git@github.com:tornadocash/tornado-core.git

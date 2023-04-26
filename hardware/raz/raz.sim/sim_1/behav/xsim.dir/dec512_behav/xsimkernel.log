@@ -1,0 +1,7 @@
+Running: xsim.dir/dec512_behav/xsimk -simmode gui -wdb dec512_behav.wdb -simrunnum 0 -socket 60845
+Design successfully loaded
+Design Loading Memory Usage: 88728 KB (Peak: 88772 KB)
+Design Loading CPU Usage: 10 ms
+Simulation completed
+Simulation Memory Usage: 227996 KB (Peak: 293532 KB)
+Simulation CPU Usage: 20 ms
