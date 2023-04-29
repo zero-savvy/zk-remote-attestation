@@ -1,4 +1,4 @@
-include "../circomlib/circuits/poseidon.circom";
+include "../../circomlib/circuits/poseidon.circom";
 
 // Computes Poseidon([left, right])
 template HashLeftRight() {
@@ -7,10 +7,15 @@ template HashLeftRight() {
     signal output hash;
 
     component hasher = Poseidon(2);
-    hasher.ins[0] <== left;
-    hasher.ins[1] <== right;
-    hasher.k <== 0;
-    hash <== hasher.outs[0];
+    hasher.inputs[0] <== left;
+    hasher.inputs[1] <== right;
+    hash <== hasher.out;
+
+    log("============ DEBUG INNER ============");
+    log(left);
+    log(right);
+    log(hash);
+    log("=====================================");
 }
 
 // if s == 0 returns [in[0], in[1]]
@@ -20,7 +25,7 @@ template DualMux() {
     signal input s;
     signal output out[2];
 
-    s * (1 - s) === 0
+    s * (1 - s) === 0;
     out[0] <== (in[1] - in[0])*s + in[0];
     out[1] <== (in[0] - in[1])*s + in[1];
 }
@@ -42,10 +47,17 @@ template MerkleTreeChecker(levels) {
         selectors[i].in[1] <== pathElements[i];
         selectors[i].s <== pathIndices[i];
 
+        log("------------------------");
+        log(selectors[i].in[0]);
+        log(selectors[i].out[0]);
+        log("------------------------");
+
         hashers[i] = HashLeftRight();
         hashers[i].left <== selectors[i].out[0];
         hashers[i].right <== selectors[i].out[1];
     }
-
+    log("============ DEBUG ============");
+    log(hashers[levels - 1].hash);
+    log("===============================");
     root === hashers[levels - 1].hash;
 }

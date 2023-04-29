@@ -1,7 +1,9 @@
+import json
 from typing import List
 from posi import pos_instance
 
 hash_func = pos_instance()
+p = 21888242871839275222246405745257275088548364400416034343698204186575808495617
 
 
 class MerkleTreeNode:
@@ -47,16 +49,36 @@ class MerkeTree:
 
 
 if __name__ == "__main__":
+    """
+    HASH(3,4) in Circom = 14763215145315200506921711489642608356394854266165572616578112107564877678998
+    """
+    print(hash_func.run_hash([1,2]))
+    sample_pk = 3
     mrkl = MerkeTree(2)
-    mrkl.leaves[0] = 0x2222
-    mrkl.leaves[1] = 0x1111
-    mrkl.leaves[2] = 0x3333
-    mrkl.leaves[3] = 0x8989
+    mrkl.leaves[0] = 1
+    mrkl.leaves[1] = 2
+    mrkl.leaves[2] = sample_pk
+    mrkl.leaves[3] = 4
     print(mrkl.leaves)
     mrkl.build_tree()
     print('Merkle root:', mrkl.root.value)
-            
-    
+    print('Merkle node:', mrkl.inner_nodes[0][0].value, mrkl.inner_nodes[0][1].value)
+    print('Merkle root:', mrkl.root.value)
+
+    INPUT_PATH = "circom/inputs/good_input.json"
+    inputs = {
+        "root": int(mrkl.root.value) % p,
+        "pubKey": int(sample_pk) % p,
+        "pathElements": [
+            int(mrkl.leaves[3]) % p,
+            int(mrkl.inner_nodes[0][0].value) % p
+        ],
+        "pathIndices": [
+            "0",
+            "1"
+        ]
+    }
+    json.dump(inputs, open(INPUT_PATH, "w"), indent=4)
 
         
 
