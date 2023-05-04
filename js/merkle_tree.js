@@ -2,6 +2,11 @@ const { poseidon } = require('@big-whale-labs/poseidon');
 const bip39 = require('bip39');
 const HDKey = require('hdkey');
 
+// DEBUGGING ENV
+if (process.env.ENV != 'debugging') {
+    console.debug = function () {};
+}
+
 // Define the hash function
 function hash(left, right) {
     return poseidon([left, right]);
@@ -12,7 +17,7 @@ function buildMerkleTree(values, hash) {
     let level_nodes = [];
     let level_height = 0;
     for (let i = 0; i < values.length; i++) {
-        console.log(`child_leaf[${i}]: ${hash(values[i], '')}`);
+        console.debug(`child_leaf[${i}]: ${hash(values[i], '')}`);
         tree.push(hash(values[i], ''));
     }
     for (let levelSize = values.length; levelSize > 1; levelSize = Math.floor((levelSize + 1) / 2)) {
@@ -24,7 +29,7 @@ function buildMerkleTree(values, hash) {
             level_nodes.push(hash(left, right));
         }
         tree = tree.concat(level_nodes);
-        console.log(`level ${level_height} nodes (size=${levelSize}): ${level_nodes}`);
+        console.debug(`level ${level_height} nodes (size=${levelSize}): ${level_nodes}`);
     }
     return tree;
 }
@@ -39,9 +44,9 @@ console.log(master.privateExtendedKey);
 console.log(master.publicExtendedKey);
 for (let i = 0; i < numKeys; i++) {
     const child = master.deriveChild(i);
-    console.log(child.publicKey);
-    console.log(parseInt(child.publicKey.toString('hex'), 16));
-    console.log("--------");
+    console.debug(child.publicKey);
+    console.debug(parseInt(child.publicKey.toString('hex'), 16));
+    console.debug("--------");
     childPublicKeys.push('0x' + child.publicKey.toString('hex'));
 }
 
