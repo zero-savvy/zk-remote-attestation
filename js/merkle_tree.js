@@ -8,23 +8,30 @@ function hash(left, right) {
 }
 
 function buildMerkleTree(values, hash) {
-    const tree = [];
+    let tree = [];
+    let level_nodes = [];
+    let level_height = 0;
     for (let i = 0; i < values.length; i++) {
-      tree.push(hash(values[i], ''));
+        console.log(`child_leaf[${i}]: ${hash(values[i], '')}`);
+        tree.push(hash(values[i], ''));
     }
     for (let levelSize = values.length; levelSize > 1; levelSize = Math.floor((levelSize + 1) / 2)) {
-      for (let i = 0; i < levelSize; i += 2) {
-        const left = tree[tree.length - levelSize + i];
-        const right = i + 1 < levelSize ? tree[tree.length - levelSize + i + 1] : '';
-        tree.push(hash(left, right));
-      }
+        level_nodes = [];
+        level_height++;
+        for (let i = 0; i < levelSize; i += 2) {
+            const left = tree[tree.length - levelSize + i];
+            const right = i + 1 < levelSize ? tree[tree.length - levelSize + i + 1] : '';
+            level_nodes.push(hash(left, right));
+        }
+        tree = tree.concat(level_nodes);
+        console.log(`level ${level_height} nodes (size=${levelSize}): ${level_nodes}`);
     }
     return tree;
 }
 let mnemonic = bip39.generateMnemonic();
 let seed = bip39.mnemonicToSeedSync(mnemonic);
 
-const numKeys = 8;
+const numKeys = 4;
 const childPublicKeys = [];
 
 const master = HDKey.fromMasterSeed(seed);
