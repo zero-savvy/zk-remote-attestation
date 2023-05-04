@@ -10,12 +10,6 @@ template HashLeftRight() {
     hasher.inputs[0] <== left;
     hasher.inputs[1] <== right;
     hash <== hasher.out;
-
-    log("============ DEBUG INNER ============");
-    log(left);
-    log(right);
-    log(hash);
-    log("=====================================");
 }
 
 // if s == 0 returns [in[0], in[1]]
@@ -47,17 +41,9 @@ template MerkleTreeChecker(levels) {
         selectors[i].in[1] <== pathElements[i];
         selectors[i].s <== pathIndices[i];
 
-        log("------------------------");
-        log(selectors[i].in[0]);
-        log(selectors[i].out[0]);
-        log("------------------------");
-
         hashers[i] = HashLeftRight();
         hashers[i].left <== selectors[i].out[0];
         hashers[i].right <== selectors[i].out[1];
     }
-    log("============ DEBUG ============");
-    log(hashers[levels - 1].hash);
-    log("===============================");
     root === hashers[levels - 1].hash;
 }

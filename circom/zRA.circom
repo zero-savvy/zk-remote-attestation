@@ -34,13 +34,19 @@ template Attest(levels) {
     signal input pathElements[levels];
     signal input pathIndices[levels];
 
+    signal pubKeyHash;
+
     // component hasher = CommitmentHasher();
     // hasher.nullifier <== nullifier;
     // hasher.secret <== secret;
     // hasher.nullifierHash === nullifierHash;
+    component hasher = Poseidon(2);
+    hasher.inputs[0] <== pubKey;
+    hasher.inputs[1] <== 0;
+    pubKeyHash <== hasher.out;
 
     component tree = MerkleTreeChecker(levels);
-    tree.leaf <== pubKey;
+    tree.leaf <== pubKeyHash;
     tree.root <== root;
     for (var i = 0; i < levels; i++) {
         tree.pathElements[i] <== pathElements[i];
