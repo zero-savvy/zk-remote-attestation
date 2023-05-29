@@ -29,24 +29,24 @@ include "tornado-core/circuits/merkleTree.circom";
 template Attest(levels) {
     signal input root;
     signal input pubKey;
-    // signal private input nullifier;
-    // signal private input secret;
+    signal input response;
+    signal input challenge;
     signal input pathElements[levels];
     signal input pathIndices[levels];
 
-    signal pubKeyHash;
+    signal hashValue;
 
-    // component hasher = CommitmentHasher();
-    // hasher.nullifier <== nullifier;
-    // hasher.secret <== secret;
-    // hasher.nullifierHash === nullifierHash;
-    component hasher = Poseidon(2);
+    component hasher = Poseidon(3);
     hasher.inputs[0] <== pubKey;
-    hasher.inputs[1] <== 0;
-    pubKeyHash <== hasher.out;
-
+    hasher.inputs[1] <== response;
+    hasher.inputs[2] <== challenge;
+    hashValue <== hasher.out;
+    // No need to check leaf === hashValue
+    // This constraint will be passed if-and-only-if the hashValue
+    // actually belongs to the Merkle tree of the given root,
+    // which is checked in MerkleTreeChecker component :)
     component tree = MerkleTreeChecker(levels);
-    tree.leaf <== pubKeyHash;
+    tree.leaf <== hashValue;
     tree.root <== root;
     for (var i = 0; i < levels; i++) {
         tree.pathElements[i] <== pathElements[i];
@@ -54,4 +54,4 @@ template Attest(levels) {
     }
 }
 
-component main {public [root, pubKey]} = Attest(2);
+component main {public [root, pubKey, challenge]} = Attest(20);
