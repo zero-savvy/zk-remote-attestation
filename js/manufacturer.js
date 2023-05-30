@@ -1,4 +1,4 @@
-const {sha256} = require('./utils');
+const {sha256, privToAddr, modSNARK} = require('./utils');
 const bip39 = require('bip39');
 const HDKey = require('hdkey');
 
@@ -7,19 +7,21 @@ function createChallenges(numAtts){
     let challenges = [];
     challenges.push('0x' + '1234567890abcdef');
     for (let i = 0; i < numAtts; i++) {
-        challenges.push(sha256([challenges[0], challenges[i]]));
+        challenges.push(modSNARK('0x' + sha256([challenges[0], challenges[i]])));
     }
-    return challenges;
+    return challenges.slice(1);
 }
 
 function createResponse(challenge, childSecret, currentPCR) {
-    return '0x' + sha256([challenge, childSecret, currentPCR]).toString('hex');
+    return modSNARK('0x0000000000000000000000000000000000000000000000000000000000000000');
+    // return '0x' + sha256([challenge, childSecret, currentPCR]).toString('hex');
 }
 
 function createDeviceKeys(numKeys) {
 
     let childPublicKeys = [];
     let childPrivateKeys = [];
+    let childAddresses = [];
     console.log(`------------------------------------------------`);
     console.log(`Generating seed phrases for the Master key . . .`);
     let mnemonic = bip39.generateMnemonic();
@@ -38,8 +40,9 @@ function createDeviceKeys(numKeys) {
         console.debug("--------");
         childPublicKeys.push('0x' + child.publicKey.toString('hex'));
         childPrivateKeys.push('0x' + child.privateKey.toString('hex'));
+        childAddresses.push(privToAddr(child.privateKey.toString('hex')));
     }
-    return {childPrivateKeys, childPublicKeys};
+    return {childPrivateKeys, childPublicKeys, childAddresses};
 }
 
 module.exports = {

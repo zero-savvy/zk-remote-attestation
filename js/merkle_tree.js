@@ -16,6 +16,15 @@ function treeHash(left, right) {
     return poseidon([left, right]);
 }
 
+function createLeaves(childPublicKey, challenges, responses) {
+    let resp = [];
+    for (let i = 0; i < challenges.length; i++) {
+        let tmp = poseidon([childPublicKey, challenges[i], responses[i]]);
+        resp.push('0x' + tmp.toString(16));
+    }
+    return resp;
+}
+
 function buildMerkleTree(values) {
     let treeJson = {};
     let tree = [];
@@ -27,9 +36,9 @@ function buildMerkleTree(values) {
     treeJson[height] = [];
     for (let i = 0; i < values.length; i++) {
         console.debug(`child_leaf[${i}]: ${treeHash(values[i], '')}`);
-        hashedValue = treeHash(values[i], '');
-        tree.push(hashedValue);
-        treeJson[height].push('0x' + hashedValue.toString(16));
+        // hashedValue = treeHash(values[i], '');
+        tree.push(values[i]);
+        treeJson[height].push(values[i]);
     }
 
     for (let levelSize = values.length; levelSize > 1; levelSize = Math.floor((levelSize + 1) / 2)) {
@@ -61,9 +70,18 @@ const givenNumAtts = prompt(`* Note: this number also will be rounded up to the 
 const numAtts = nxtPo2(parseInt(givenNumAtts));
 console.log(`Entered number is ${givenNumAtts}. Rounded up to ${numAtts}!`);
 
-let {childPrivateKeys, childPublicKeys} = createDeviceKeys(numKeys);
+let {childPrivateKeys, childPublicKeys, childAddresses} = createDeviceKeys(numKeys);
 let challenges = createChallenges(numAtts);
-
+fs.writeFile(`deviceKeys.json`, JSON.stringify({'sec': childPrivateKeys, 'pub': childPublicKeys, 'addr': childAddresses}, null, 4), err => {
+    if (err) {
+      throw err
+    }
+  })
+fs.writeFile(`challenges.json`, JSON.stringify(challenges, null, 4), err => {
+    if (err) {
+      throw err
+    }
+  })
 // Build the Merkle tree
 console.log(`-----------------------------------------------`);
 console.log(`Generating the Merkle tree for each device, based on the pseudo-random challendge and devices' predictable responses . . .`);
@@ -79,11 +97,15 @@ for (let i = 0; i < numKeys; i++) {
             (j == 0) ? childPrivateKeys[i] : responses[j-1]
             ));
     }
-    tmpTreeJson = buildMerkleTree(responses);
+    let devLeaves = createLeaves(childAddresses[i], challenges, responses);
+    tmpTreeJson = buildMerkleTree(devLeaves);
     devMT.push(tmpTreeJson);
     // Dump the MerkleTree of the device into a specific file.
     // This file will be stored in the device itself.
-    const dumpingData = JSON.stringify(tmpTreeJson);
+    const dumpingData = JSON.stringify(tmpTreeJson, null, 4);
+    if (!fs.existsSync('devMT_files')){
+        fs.mkdirSync('devMT_files');
+    }
     fs.writeFile(`devMT_files/device_${i}_merkle_tree.json`, dumpingData, err => {
         if (err) {
           throw err
@@ -99,6 +121,13 @@ console.log(`Done!`);
 console.log(`-----------------------------------------------`);
 console.log(`Generating Merkle three of the previously generated Merkle roots (called MT^2 in the paper) . . .`);
 const merkleTree = buildMerkleTree(devMTRoots);
+// Dump the MerkleTree a specific file.
+const dumTemp = JSON.stringify(merkleTree, null, 4);
+fs.writeFile(`devMT_files/main_merkle_tree.json`, dumTemp, err => {
+    if (err) {
+        throw err
+    }
+    })
 
 // Log the master public key, child public keys, and Merkle tree
 // console.log(`Master public key: ${master.publicExtendedKey}`);
