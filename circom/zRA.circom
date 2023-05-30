@@ -41,12 +41,7 @@ template Attest(levels) {
     hasher.inputs[1] <== challenge;
     hasher.inputs[2] <== response;
     hashValue <== hasher.out;
-    log("------------------------------");
-    log(pubKey);
-    log(response);
-    log(challenge);
-    log(hashValue);
-    log("------------------------------");
+    
     // No need to check leaf === hashValue
     // This constraint will be passed if-and-only-if the hashValue
     // actually belongs to the Merkle tree of the given root,
@@ -60,4 +55,4 @@ template Attest(levels) {
     }
 }
 
-component main {public [root, pubKey, challenge]} = Attest(2);
+component main {public [root, pubKey, challenge]} = Attest(20);
