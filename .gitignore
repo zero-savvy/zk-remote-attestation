@@ -64,6 +64,10 @@ typings/
 # next.js build output
 .next
 
+# Buid directories
+circom/*_cpp/
+circom/*_js/
+
 tmp
 
 .DS_Store
