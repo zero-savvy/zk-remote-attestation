@@ -33,8 +33,8 @@ contract PublicAttestor {
         _;
     }
 
-        constructor(address _owner) {
-        owner = _owner;
+        constructor() {
+        owner = msg.sender;
     }
 
     function checkRoot(uint256 value) public view returns (bool) {
@@ -69,6 +69,11 @@ contract PublicAttestor {
 
     function publishChallenge(uint256 challenge) external onlyOwner {
         latestChallenge = challenge;
+        return; 
+    }
+
+    function addRoot(uint256 newRoot) external onlyOwner {
+        valitRoots.push(newRoot);
         return; 
     }
 }
