@@ -27,14 +27,15 @@ contract PublicAttestor {
     address private owner;
     uint256[] public valitRoots;
     uint256 public latestChallenge;
+    Groth16Verifier public verifier;
 
     modifier onlyOwner() {
         require(owner == msg.sender);
         _;
     }
-
         constructor() {
         owner = msg.sender;
+        verifier = Groth16Verifier(address(0x4FB0A3fd2e36A50C1854f638074dd30525802711));
     }
 
     function checkRoot(uint256 value) public view returns (bool) {
@@ -45,7 +46,7 @@ contract PublicAttestor {
         }
         return false;
     }
-    function attest(uint[2] calldata _pA, uint[2][2] calldata _pB, uint[2] calldata _pC, uint[3] calldata _pubSignals) public {
+    function attest(uint[2] calldata _pA, uint[2] calldata _pB1, uint[2] calldata _pB2, uint[2] calldata _pC, uint[3] calldata _pubSignals) public {
         
         address convertedAddress = address(uint160(_pubSignals[1]));
         
@@ -53,18 +54,15 @@ contract PublicAttestor {
         if (convertedAddress != msg.sender) { revert(); } 
 
         // check validity of the Merkle root
-        if (checkRoot(_pubSignals[0])) { revert(); } 
+        if (!checkRoot(_pubSignals[0])) { revert(); } 
 
         // check if the challenge is up-to-date
         if (_pubSignals[2] != latestChallenge) { revert(); }
         
         // verify zkSNARK proof
         bool proofVerification;
-        Groth16Verifier verifier = new Groth16Verifier();
-        proofVerification = verifier.verifyProof(_pA, _pB, _pC, _pubSignals);    
+        proofVerification = verifier.verifyProof(_pA, [_pB1, _pB2], _pC, _pubSignals);    
         if (!proofVerification) { revert(); }
-
-        return;
     }
 
     function publishChallenge(uint256 challenge) external onlyOwner {
