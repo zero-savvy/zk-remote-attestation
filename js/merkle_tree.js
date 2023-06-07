@@ -97,7 +97,7 @@ for (let i = 0; i < numKeys; i++) {
             (j == 0) ? childPrivateKeys[i] : responses[j-1]
             ));
     }
-    let devLeaves = createLeaves(childAddresses[i], challenges, responses);
+    let devLeaves = createLeaves('0xe572eD5cD7004C0D04C731AEfF1Eac70F531CE93', challenges, responses);
     tmpTreeJson = buildMerkleTree(devLeaves);
     devMT.push(tmpTreeJson);
     // Dump the MerkleTree of the device into a specific file.

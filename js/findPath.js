@@ -11,7 +11,7 @@ function createMerklePath(leafIndex, treeDepth) {
     
     return merklePath;
   }
-leafIndex = 4456
+leafIndex = 222270
 
 let merklePaths = [];
 let merkleIndices = [];
