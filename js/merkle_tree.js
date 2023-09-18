@@ -1,7 +1,7 @@
 const { poseidon } = require('@big-whale-labs/poseidon');
 const { tmpdir } = require('os');
 const prompt = require('prompt-sync')();
-const {sha256, nxtPo2} = require('./utils');
+const {sha256, nxtPo2, modSNARK} = require('./utils');
 const {createChallenges, createDeviceKeys, createResponse} = require('./manufacturer');
 const fs = require('fs');
 
@@ -35,8 +35,7 @@ function buildMerkleTree(values) {
 
     treeJson[height] = [];
     for (let i = 0; i < values.length; i++) {
-        console.debug(`child_leaf[${i}]: ${treeHash(values[i], '')}`);
-        // hashedValue = treeHash(values[i], '');
+        console.debug(`child_leaf[${i}]: ${values[i]}`);
         tree.push(values[i]);
         treeJson[height].push(values[i]);
     }
@@ -93,11 +92,9 @@ for (let i = 0; i < numKeys; i++) {
     for (let j = 0; j < numAtts; j++) {
         responses.push(createResponse(
             challenges[j],
-            childPrivateKeys[i], 
-            (j == 0) ? childPrivateKeys[i] : responses[j-1]
-            ));
+            childPrivateKeys[i]));
     }
-    let devLeaves = createLeaves('0xe572eD5cD7004C0D04C731AEfF1Eac70F531CE93', challenges, responses);
+    let devLeaves = createLeaves(childPublicKeys[i], challenges, responses);
     tmpTreeJson = buildMerkleTree(devLeaves);
     devMT.push(tmpTreeJson);
     // Dump the MerkleTree of the device into a specific file.

@@ -6,15 +6,16 @@ const HDKey = require('hdkey');
 function createChallenges(numAtts){
     let challenges = [];
     challenges.push('0x' + '1234567890abcdef');
+    const some_secret = '0x' + '4444555555abcdef';
     for (let i = 0; i < numAtts; i++) {
-        challenges.push(modSNARK('0x' + sha256([challenges[0], challenges[i]])));
+        challenges.push(modSNARK('0x' + sha256([challenges[0], some_secret, challenges[i]])));
     }
     return challenges.slice(1);
 }
 
-function createResponse(challenge, childSecret, currentPCR) {
-    return modSNARK('0x0000000000000000000000000000000000000000000000000000000000000000');
-    // return '0x' + sha256([challenge, childSecret, currentPCR]).toString('hex');
+function createResponse(challenge, childSecret) {
+    let correct_measurements = '0x01020304050607'; // can be anything, depending on the application, e.g. Hash(memory foot-print, etc.)
+    return modSNARK('0x' + sha256([challenge, childSecret, correct_measurements]).toString('hex'));
 }
 
 function createDeviceKeys(numKeys) {

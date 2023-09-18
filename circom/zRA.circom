@@ -32,4 +32,4 @@ template Attest(levels) {
     }
 }
 
-component main {public [root, devAddr, challenge]} = Attest(20);
+component main {public [root, devAddr, challenge]} = Attest(40);

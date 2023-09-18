@@ -38,4 +38,4 @@ signed_tx = Account.sign_transaction(tx, privkey)
 # print(signed_tx)
 
 tx_hash = w3.eth.send_raw_transaction(signed_tx.rawTransaction)
-print(tx_hash)
+print(tx_hash.hex())
