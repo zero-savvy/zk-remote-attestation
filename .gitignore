@@ -67,6 +67,10 @@ typings/
 # Buid directories
 circom/*_cpp/
 circom/*_js/
+circom/*.sym
+circom/*.r1cs
+circom/*.zkey
+   
 
 tmp
 

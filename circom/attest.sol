@@ -33,9 +33,9 @@ contract PublicAttestor {
         require(owner == msg.sender);
         _;
     }
-        constructor() {
+        constructor(address groth_verifier) {
         owner = msg.sender;
-        verifier = Groth16Verifier(address(0x4FB0A3fd2e36A50C1854f638074dd30525802711));
+        verifier = Groth16Verifier(groth_verifier);
     }
 
     function checkRoot(uint256 value) public view returns (bool) {
