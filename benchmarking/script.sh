@@ -24,7 +24,7 @@ done
 average_time=$(echo "scale=4; $total_time / $num_times" | bc -l)
 
 # Print the average execution time
-echo "Average witness generation time: $average_time seconds"
+echo "Average witness generation time: 0$average_time seconds"
 
 
 # Initialize total time variable
@@ -48,4 +48,4 @@ done
 average_time=$(echo "scale=4; $total_time / $num_times" | bc -l)
 
 # Print the average execution time
-echo "Average proof generation time: $average_time seconds"
+echo "Average proof generation time: 0$average_time seconds"
