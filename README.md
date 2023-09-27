@@ -1,6 +1,6 @@
 # zk-remote-attestation
 
-## Bnechmarking
+## Benchmarking
 All of the experiments are __reproducible on commodity hardware__ using __Linux__-based operating systems. We have provided pre-built executable/binary files in the repository that can be used easily for benchmarking. 
 
 ### Setup/Installation
