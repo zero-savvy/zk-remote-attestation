@@ -1,4 +1,4 @@
-# zk-remote-attestation
+# zk-remote-attestation   [![DOI](https://zenodo.org/badge/624406789.svg)](https://zenodo.org/badge/latestdoi/624406789)
 
 ## Benchmarking
 All of the experiments are __reproducible on commodity hardware__ using __Linux__-based operating systems. We have provided pre-built executable/binary files in the repository that can be used easily for benchmarking. 
