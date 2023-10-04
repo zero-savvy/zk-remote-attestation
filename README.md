@@ -3,8 +3,16 @@
 This repository is an implementation of zRA protocol, a non-interactive method for constructing a transparent remote attestation (RA) protocol based on zkSNARKs. This protocol eliminates the need for online and trusted services during attestation. The protocol provides a publicly verifiable attestation mechanism with generating ZK proofs for pre-image solutions for commitments within a specialized Merkle tree. In other words, zRA requires the device (prover) to demonstrate knowledge of specific values (challenge, response, and public_key) that when combined and hashed, result in a leaf within the Merkle tree. In practice, this approach can be viewed as an adaptation of the Tornado-cash protocol to enhance remote attestation.
 
 ## Benchmarking
-All of the experiments are __reproducible on commodity hardware__ using __Linux__-based operating systems. We have provided pre-built executable/binary files in the repository that can be used easily for benchmarking. 
+All of the experiments are __reproducible on commodity hardware__ using __Linux__-based operating systems. We have provided pre-built executable/binary files in the repository that can be used easily for benchmarking.
 
+All of the benchmarks are also have been done successfully on the following tiny boards:
+1. ASUS TinkerBoard
+2. Raspberry Pi Zero 2W
+<p float="left">
+ <img src="doc/photo-raspberry-pi-zero.jpg" data-canonical-src="doc/photo-raspberry-pi-zero.jpg" height="150" />
+ <img src="doc/photo-tinkerboard.jpg" data-canonical-src="doc/photo-tinkerboard.jpg" height="150" />
+ <img src="doc/photo-together.jpg" data-canonical-src="doc/photo-together.jpg" height="150" />
+</p>
 ### Setup/Installation
 
 The only preparation that is required to execute benchmarks is installing "node js and snarkjs package" that can be done in any OS easily as follows:
