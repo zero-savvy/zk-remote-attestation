@@ -12,6 +12,7 @@ All of the benchmarks are also have been done successfully on the following tiny
  <img src="doc/photo-raspberry-pi-zero.jpg" data-canonical-src="doc/photo-raspberry-pi-zero.jpg" height="150" />
  <img src="doc/photo-tinkerboard.jpg" data-canonical-src="doc/photo-tinkerboard.jpg" height="150" />
  <img src="doc/photo-together.jpg" data-canonical-src="doc/photo-together.jpg" height="150" />
+ <img src="doc/measure-proof-gen-energy.jpg" data-canonical-src="doc/measure-proof-gen-energy.jpg" height="150" />
 </p>
 
 ### Setup/Installation
