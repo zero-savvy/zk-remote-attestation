@@ -20,40 +20,46 @@ The only preparation that is required to execute benchmarks is installing "node 
 
 __For Installing Node JS:__
 
-> curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+``` curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash ```
 
-> source ~/.bashrc
+``` source ~/.bashrc ```
 
-> nvm install v16.20.0
+``` nvm install v16.20.0 ```
+
+> [!NOTE]
+> in rare cases (miss-configured Linux distros), if you got an error stating that version "v16.20.0" was not found; following command might help:
+> ``` export NVM_NODEJS_ORG_MIRROR=http://nodejs.org/dist ```
+> 
 
 __For installing snarkjs:__
-> npm install -g snarkjs
+
+``` npm install -g snarkjs ```
 
 
 ### Execution
-1. clone the repository with following command:
-> git clone git@github.com:zero-savvy/zk-remote-attestation.git
+1. clone the repository with following command:\
+```git clone git@github.com:zero-savvy/zk-remote-attestation.git ```
 
-2. go to the benchmark directory:
-> cd zk-remote-attestation/benchmarking
+2. go to the benchmark directory:\
+```cd zk-remote-attestation/benchmarking ```
 
-3. We have prepared a script for benchmark. Simply give it execution permissions:
-> chmod +x script.sh
+3. We have prepared a script for benchmark. Simply give it execution permissions:\
+ ```chmod +x script.sh ```
 
 4. Run the benchmarks! \
-The script takes two inputs: 1) number of tests, and 2) the test name [choose from "ra10", "ra20", "ra30", and "ra40"].
+The script takes two inputs: 1) number of tests, and 2) the test name [choose from ```ra10``` , ```ra20```, ```ra30```, and ```ra40```].
 
-__Example 1__: running proofs of attestation tree with height of __30__ for __10__ times:
-> ./script.sh 10 ra30
+__Example 1__: running proofs of attestation tree with height of __30__ for __10__ times:\
+```./script.sh 10 ra30```
 
-__Example 2__: running proofs of attestation tree with height of __20__ for __5__ times:
-> ./script.sh 5 ra20
+__Example 2__: running proofs of attestation tree with height of __20__ for __5__ times:\
+```./script.sh 5 ra20```
 
 __Sample output__: The script reports the average time for generating witness and the proof. Below is a sample output:
 >Average witness generation time: 0.4152 seconds\
 Average proof generation time: 0.7881 seconds
 
-> __NOTE__:\
+> [!NOTE]
 > Please note that depending on the system, generating witnesses and proofs can take time. since the generation times are usually consistent, we suggest trying the benchmark with small number of tests (e.g. 5 or 10) before running higher number of tests.
 
 ## References
