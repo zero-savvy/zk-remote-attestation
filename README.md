@@ -1,6 +1,14 @@
 # zk-remote-attestation   [![DOI](https://zenodo.org/badge/624406789.svg)](https://zenodo.org/badge/latestdoi/624406789)
+<p align="center">
+  <img src="doc/cover_image_by_Bing_Image_Creator.jpeg" data-canonical-src="doc/cover_image_by_Bing_Image_Creator.jpeg"/>
+  <em>The image is made by Bing Image Creator (Powered by DALL·E 3)</em>
+</p>
+This repository is an implementation of zRA protocol, a non-interactive method for constructing a transparent remote attestation (RA) protocol based on zkSNARKs. </br>
 
-This repository is an implementation of zRA protocol, a non-interactive method for constructing a transparent remote attestation (RA) protocol based on zkSNARKs. This protocol eliminates the need for online and trusted services during attestation. The protocol provides a publicly verifiable attestation mechanism with generating ZK proofs for pre-image solutions for commitments within a specialized Merkle tree. In other words, zRA requires the device (prover) to demonstrate knowledge of specific values (challenge, response, and public_key) that when combined and hashed, result in a leaf within the Merkle tree. In practice, this approach can be viewed as an adaptation of the Tornado-cash protocol to enhance remote attestation.
+
+The initial paper of this protocol has been accepted/published as part of the NDSS'24 Conference.
+
+This protocol eliminates the need for online and trusted services during attestation. The protocol provides a publicly verifiable attestation mechanism with generating ZK proofs for pre-image solutions for commitments within a specialized Merkle tree. In other words, zRA requires the device (prover) to demonstrate knowledge of specific values (challenge, response, and public_key) that when combined and hashed, result in a leaf within the Merkle tree. In practice, this approach can be viewed as an adaptation of the Tornado-cash protocol to enhance remote attestation.
 
 ## Benchmarking
 All of the experiments are __reproducible on commodity hardware__ using __Linux__-based operating systems. We have provided pre-built executable/binary files in the repository that can be used easily for benchmarking.
