@@ -78,7 +78,9 @@ Average proof generation time: 0.7881 seconds
 > [!NOTE]
 > Please note that depending on the system, generating witnesses and proofs can take time. since the generation times are usually consistent, we suggest trying the benchmark with small number of tests (e.g. 5 or 10) before running higher number of tests.
 
-## References
+## Acknowledgements
+Implementation of zRA could not be possible without the following open-source projects and we appreciate all the efforts done by the community. Especially, we have used following repositories to build zRA:
+
 [1] [Circom](https://github.com/iden3/circom): For building and compiling ZK circuits.
 
 [2] [CircomLib](https://github.com/iden3/circomlib): Used for globaly tested POSEIDON implementations on Circom.
