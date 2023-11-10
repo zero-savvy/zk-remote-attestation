@@ -1,4 +1,4 @@
-# zk-remote-attestation   [![DOI](https://zenodo.org/badge/624406789.svg)](https://zenodo.org/badge/latestdoi/624406789)
+# zRA: Proofs of Attestation based on zkSNARKs  [![DOI](https://zenodo.org/badge/624406789.svg)](https://zenodo.org/badge/latestdoi/624406789)
 <p align="center">
   <img src="doc/cover_image_by_Bing_Image_Creator.jpeg" data-canonical-src="doc/cover_image_by_Bing_Image_Creator.jpeg"/>
   <em>The image is made by Bing Image Creator (Powered by DALL·E 3)</em>
@@ -6,12 +6,16 @@
 
 This repository is an implementation of zRA protocol, a non-interactive method for constructing a transparent remote attestation (RA) protocol based on zkSNARKs. 
 
-> [!IMPORTANT]
-> **The initial paper of this protocol has been accepted/published as part of the [NDSS'24](https://www.ndss-symposium.org/ndss2024/) Conference.** </br>
-> For more details on the building blocks, performance and security analysis of zRA, we advise you to check the manuscript, available at [NDSS'24](https://www.ndss-symposium.org/ndss2024/). </br>
-> **Paper Title:** _From Interaction to Independence: zkSNARKs for Transparent and Non-Interactive Remote Attestation_
-
 This protocol eliminates the need for online and trusted services during attestation. The protocol provides a publicly verifiable attestation mechanism with generating ZK proofs for pre-image solutions for commitments within a specialized Merkle tree. In other words, zRA requires the device (prover) to demonstrate knowledge of specific values (challenge, response, and public_key) that when combined and hashed, result in a leaf within the Merkle tree. In practice, this approach can be viewed as an adaptation of the Tornado-cash protocol to enhance remote attestation.
+
+## References
+The initial paper of this protocol has been accepted/published as part of the [NDSS'24](https://www.ndss-symposium.org/ndss2024/) Conference.</br>
+For more details on the building blocks, performance and security analysis of zRA, we advise you to check the manuscript, available at NDSS'24.
+
+**Title:** [From Interaction to Independence: zkSNARKs for Transparent and Non-Interactive Remote Attestation](https://www.ndss-symposium.org/ndss2024/)</br>
+**Authors:** [Shahriar Ebrahimi](https://lovely-necromancer.github.io), [Parisa Hassanizadeh](https://parizad1188.github.io)</br>
+**Conference:** [NDSS 2024](https://www.ndss-symposium.org/ndss2024/)
+
 
 ## Benchmarking
 All of the experiments are __reproducible on commodity hardware__ using __Linux__-based operating systems. We have provided pre-built executable/binary files in the repository that can be used easily for benchmarking.
