@@ -12,7 +12,7 @@ This protocol eliminates the need for online and trusted services during attesta
 The initial paper of this protocol has been accepted/published as part of the [NDSS'24](https://www.ndss-symposium.org/ndss2024/) Conference.</br>
 For more details on the building blocks, performance and security analysis of zRA, we advise you to check the manuscript, available at NDSS'24.
 
-**Title:** [From Interaction to Independence: zkSNARKs for Transparent and Non-Interactive Remote Attestation](https://www.ndss-symposium.org/ndss2024/)</br>
+**Title:** [From Interaction to Independence: zkSNARKs for Transparent and Non-Interactive Remote Attestation](https://dx.doi.org/10.14722/ndss.2024.24815)</br>
 **Authors:** [Shahriar Ebrahimi](https://lovely-necromancer.github.io), [Parisa Hassanizadeh](https://parizad1188.github.io)</br>
 **Conference:** [NDSS 2024](https://www.ndss-symposium.org/ndss2024/)
 
