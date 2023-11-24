@@ -54,7 +54,7 @@ __For installing snarkjs:__
 
 ### Execution
 1. clone the repository with following command:\
-```git clone git@github.com:zero-savvy/zk-remote-attestation.git ```
+```git clone https://github.com/zero-savvy/zk-remote-attestation.git ```
 
 2. go to the benchmark directory:\
 ```cd zk-remote-attestation/benchmarking ```
