@@ -14,7 +14,8 @@ For more details on the building blocks, performance and security analysis of zR
 
 **Title:** [From Interaction to Independence: zkSNARKs for Transparent and Non-Interactive Remote Attestation](https://dx.doi.org/10.14722/ndss.2024.24815)</br>
 **Authors:** [Shahriar Ebrahimi](https://lovely-necromancer.github.io), [Parisa Hassanizadeh](https://parizad1188.github.io)</br>
-**Conference:** [NDSS 2024](https://www.ndss-symposium.org/ndss2024/)
+**Conference:** [NDSS 2024](https://www.ndss-symposium.org/ndss2024/)</br>
+**PDF of the Camera-Ready Version:** [NDSS24.pdf](doc/NDSS24.pdf)
 
 
 ## Benchmarking
