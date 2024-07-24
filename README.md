@@ -13,7 +13,7 @@ This protocol eliminates the need for online and trusted services during attesta
 
   Watch the following video presentation of the zRA protocol at NDSS-24:
 
-  [![Watch the video](https://github.com/user-attachments/assets/e3dd38ef-db32-46f1-9107-135ad069ab17)](http://www.youtube.com/watch?v=8e9T8VJIf64)
+  [![Watch the video](https://github.com/user-attachments/assets/6230c07f-7335-4257-9d35-49a2b47c34bf)](http://www.youtube.com/watch?v=8e9T8VJIf64)
 
 </p>
 
