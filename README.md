@@ -4,6 +4,12 @@
   <em>The image is made by Bing Image Creator (Powered by DALL·E 3)</em>
 </p>
 
+<p align="center">
+  
+[![Watch the video](https://img.youtube.com/vi/8e9T8VJIf64/hqdefault.jpg)](https://youtu.be/8e9T8VJIf64)
+
+</p>
+
 This repository is an implementation of zRA protocol, a non-interactive method for constructing a transparent remote attestation (RA) protocol based on zkSNARKs. 
 
 This protocol eliminates the need for online and trusted services during attestation. The protocol provides a publicly verifiable attestation mechanism with generating ZK proofs for pre-image solutions for commitments within a specialized Merkle tree. In other words, zRA requires the device (prover) to demonstrate knowledge of specific values (challenge, response, and public_key) that when combined and hashed, result in a leaf within the Merkle tree. In practice, this approach can be viewed as an adaptation of the Tornado-cash protocol to enhance remote attestation.
