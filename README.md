@@ -28,6 +28,21 @@ For more details on the building blocks, performance and security analysis of zR
 **Conference:** [NDSS 2024](https://www.ndss-symposium.org/ndss2024/)</br>
 **PDF of the Camera-Ready Version:** [NDSS24.pdf](doc/NDSS24.pdf)
 
+### NDSS'24 Publication
+
+If you have used this repo to develop a research work or product, please cite our paper:
+
+```
+@inproceedings{zra:NDSS24,
+  title     = {From Interaction to Independence: zkSNARKs for Transparent and Non-Interactive Remote Attestation},
+  author    = {Ebrahimi, Shahriar and Hassanizadeh, Parisa},
+  booktitle = {Proceedings of the 31st Annual Network and Distributed System Security Symposium (NDSS'24)},
+  address   = {San Diego, CA},
+  month     = {February},
+  year      = 2024
+}
+```
+
 
 ## Benchmarking
 All of the experiments are __reproducible on commodity hardware__ using __Linux__-based operating systems. We have provided pre-built executable/binary files in the repository that can be used easily for benchmarking.
